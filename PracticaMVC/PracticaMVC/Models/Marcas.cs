@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace PracticaMVC.Models
 {
-    public class Marcas
+    public class marcas
     {
 
         [Key]
