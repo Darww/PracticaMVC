@@ -13,8 +13,30 @@ namespace PracticaMVC.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        // MÉTODO AUTENTICAR AÑADIDO
+        public IActionResult Autenticar()
         {
+            ViewData["ErrorMessage"] = "";
+            return View();
+        }
+
+
+        public IActionResult Index()
+        {   //obtengo las variables de sesion
+            var usuarioId = HttpContext.Session.GetInt32("UsuarioId");
+            var tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
+            var nombreUsuario = HttpContext.Session.GetString("Nombre");
+
+            if (usuarioId == null)
+            {
+                // Si no existe la sesión, redirigir al login
+                return RedirectToAction("Autenticar", "Home");
+            }
+
+            //retorno de informacion a la vista por viewbag y viewdata
+            ViewBag.nombre = nombreUsuario;
+            ViewData["tipoUsuario"] = tipoUsuario;  
+
             return View();
         }
 
