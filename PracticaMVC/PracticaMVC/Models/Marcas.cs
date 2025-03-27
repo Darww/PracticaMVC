@@ -13,7 +13,7 @@ namespace PracticaMVC.Models
         public string? nombre_marca { get; set; }
         [DisplayName("Estado")]
         [StringLength(1, ErrorMessage = "La canridad maxima de caracteres valida es {1}")]
-        public string? estados {  get; set; }
+        public bool? estados {  get; set; }
         
     }
 }

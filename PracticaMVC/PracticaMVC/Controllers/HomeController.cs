@@ -44,7 +44,7 @@ namespace PracticaMVC.Controllers
                                     select new
                                     {
                                         nombre = e.nombre,
-                                        description = e.description,
+                                        descripcion = e.descripcion,
                                         marca_id = e.marca_id,
                                         marca_nombre = m.nombre_marca
                                     }).ToList();

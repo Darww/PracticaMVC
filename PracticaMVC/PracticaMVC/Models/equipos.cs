@@ -10,7 +10,7 @@ namespace PracticaMVC.Models
             public int id_equipos { get; set; }
 
             public string nombre { get; set; }
-            public string description { get; set; }
+            public string descripcion { get; set; }
 
             [ForeignKey("tipo_equipo")]  // Relación con tabla tipo_equipo
             [Column("tipo_equipo_id")]
