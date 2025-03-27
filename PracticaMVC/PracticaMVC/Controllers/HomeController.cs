@@ -39,6 +39,18 @@ namespace PracticaMVC.Controllers
 
             ViewData["ListadoDeMarcas"] = new SelectList(ListaDeMarcas, "id_marcas", "nombre_marca");
 
+            var listadoDeEquipos = (from e in _context.equipos
+                                    join m in _context.Marcas on e.marca_id equals m.Id_marcas
+                                    select new
+                                    {
+                                        nombre = e.nombre,
+                                        description = e.description,
+                                        marca_id = e.marca_id,
+                                        marca_nombre = m.nombre_marca
+                                    }).ToList();
+
+            ViewData["ListadoEquipo"] = listadoDeEquipos;
+
             //retorno de informacion a la vista por viewbag y viewdata
             ViewBag.nombre = nombreUsuario;
             ViewData["tipoUsuario"] = tipoUsuario;  
@@ -86,7 +98,12 @@ namespace PracticaMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+        public IActionResult CrearEquipos(equipos nuevoEquipo)
+        {
+            _context.Add(nuevoEquipo);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

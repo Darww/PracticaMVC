@@ -26,5 +26,24 @@
         <input type="submit" class="btn btn-primary" value="Guardar" />
     </div>
 </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Description</th>
+                <th>Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in (IEnumerable<dynamic>)ViewData["ListadoEquipo"])
+            {
+                <tr>
+                    <td>@equipo.nombre</td>
+                    <td>@equipo.description</td>
+                    <td>@equipo.marca_nombre</td>
+                </tr>
+            }
+        </tbody>
 @*Fin del Formulario*@
 </form>
