@@ -4,6 +4,7 @@ using PracticaMVC.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using PracticaMVC.Servicios;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace PracticaMVC.Controllers
 {
@@ -20,7 +21,8 @@ namespace PracticaMVC.Controllers
 
         [Autenticacion]
         public IActionResult Index()
-        {   //obtengo las variables de sesion
+        { 
+            //obtengo las variables de sesion
             var usuarioId = HttpContext.Session.GetInt32("UsuarioId");
             var tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
             var nombreUsuario = HttpContext.Session.GetString("Nombre");
@@ -30,6 +32,12 @@ namespace PracticaMVC.Controllers
                 // Si no existe la sesión, redirigir al login
                 return RedirectToAction("Autenticar", "Home");
             }
+
+            // Listado de marcas para dropdown
+            var ListaDeMarcas = (from m in _context.Marcas
+                                 select m).ToList();
+
+            ViewData["ListadoDeMarcas"] = new SelectList(ListaDeMarcas, "id_marcas", "nombre_marca");
 
             //retorno de informacion a la vista por viewbag y viewdata
             ViewBag.nombre = nombreUsuario;

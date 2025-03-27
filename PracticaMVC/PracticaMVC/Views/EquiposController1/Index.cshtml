@@ -1,0 +1,30 @@
+﻿<h1>Mantenimiento de Equipos</h1>
+<br />
+
+<form asp-action="CrearEquipos">
+@*Inicio del Formulario*@
+<div class="form-group row mb-4">
+    <div class="col-sm-2">
+        <Label>Nombre</Label>
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBox("nombre", "", new { @class = "form-control" })
+    </div>
+    <div class="col-sm-2">
+        @Html.Label("libDescription", "Description")
+    </div>
+    <div class="col-sm-4">
+        @Html.TextArea("description", "", new { @class = "form-control", @placeholder = "Ingrese la descripción" })
+    </div>
+</div>
+<div class="col-sm-4">
+    @Html.DropDownList("marca_id", ViewData["ListadoDeMarcas"] as SelectList, "Seleccione una marca", new { @class = "form-control" })
+</div>
+<div class="form-group row mb-4">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+        <input type="submit" class="btn btn-primary" value="Guardar" />
+    </div>
+</div>
+@*Fin del Formulario*@
+</form>
